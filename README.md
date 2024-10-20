@@ -1,7 +1,7 @@
 # QuestionAlert
 This repository contains information about QuestionAlert extension made for Chegg experts. 
 
-```markdown
+
 # Chegg Question Alert Chrome Extension
 
 This Chrome extension helps Chegg subject matter experts by notifying them when a specific keyword appears on the Chegg Q&A live authoring page. It highlights the keyword in red and plays a notification sound, ensuring experts don't miss questions.
@@ -80,14 +80,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Chrome's [Extension API documentation](https://developer.chrome.com/docs/extensions/mv3/getstarted/) for guidance.
 - [Chegg](https://www.chegg.com/) for providing the platform where the extension is utilized.
 
-```
 
-### Next Steps:
-1. Save this text as a `README.md` file in your project directory.
-2. Add and commit it to your Git repository:
-   ```bash
-   git add README.md
-   git commit -m "Added README file for the extension"
-   git push origin master
-   ```
+
+
 
