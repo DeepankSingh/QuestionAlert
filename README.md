@@ -1,86 +1,230 @@
-# QuestionAlert
-This repository contains information about QuestionAlert extension made for Chegg experts. 
+# Chegg Expert Monitor - Chrome Extension
 
+A powerful Chrome extension that automatically monitors Chegg Expert Q&A pages for specific keywords, providing real-time alerts with sound notifications, visual highlights, and Chrome notifications.
 
-# Chegg Question Alert Chrome Extension
+## 🌟 Features
 
-This Chrome extension helps Chegg subject matter experts by notifying them when a specific keyword appears on the Chegg Q&A live authoring page. It highlights the keyword in red and plays a notification sound, ensuring experts don't miss questions.
+### Core Monitoring
+- **Auto-refresh**: Automatically refreshes Chegg Expert pages at user-defined intervals (1-300 seconds)
+- **Keyword Detection**: Scans page content for specified keywords after each refresh
+- **Real-time Updates**: Instantly applies settings changes without requiring page reload
 
-## Features
+### Alert System
+- **🔊 Sound Alerts**: Plays alert sound when keywords are found (with fallback beep)
+- **🔔 Chrome Notifications**: Shows system notifications with keyword details
+- **✨ Visual Highlighting**: Highlights found keywords directly on the page with animated effects
+- **📊 Smart Duplicate Prevention**: Avoids repeated alerts for the same keyword instances
 
-- **Keyword Detection**: Enter a keyword in the extension popup. When the keyword appears on the page, it is highlighted in red.
-- **Audio Notification**: Plays a sound when the keyword is detected.
-- **Visual Notification**: Displays a Chrome notification alerting you that the keyword was found.
-- **Toggle ON/OFF**: Use the popup switch to turn the extension ON or OFF.
-- **Customizable Keyword**: You can change the keyword to be tracked through the popup interface.
+### User Interface
+- **🎨 Modern Design**: Beautiful, responsive popup interface with gradient backgrounds
+- **📈 Live Statistics**: Track refresh count, keywords found, and last refresh time
+- **🔘 Easy Toggle**: Simple on/off switch for monitoring control
+- **🎯 Status Badge**: Toolbar badge shows monitoring status (ON/OFF)
 
-## Installation
+### Advanced Features
+- **🔍 Dynamic Content Detection**: Monitors dynamically loaded content via MutationObserver
+- **⚡ Instant Settings**: Settings changes apply immediately to active monitoring
+- **🧪 Test Mode**: Test alert functionality before starting monitoring
+- **📊 Statistics Tracking**: Comprehensive stats with clear functionality
 
-1. **Clone the repository**:
+## 📦 Installation
+
+### From Source (Developer Mode)
+
+1. **Download the Extension**
    ```bash
-   git clone https://github.com/your-username/chegg-question-alert-extension.git
+   git clone [repository-url]
+   cd chegg-expert-monitor
    ```
 
-2. **Load the extension in Chrome**:
-   - Open Chrome and navigate to `chrome://extensions/`.
-   - Enable **Developer mode** in the top right corner.
-   - Click **Load unpacked** and select the `src` folder from the cloned repository.
-   - The extension will now appear in your Chrome extensions list.
+2. **Enable Developer Mode in Chrome**
+   - Open Chrome and navigate to `chrome://extensions/`
+   - Enable "Developer mode" in the top right corner
 
-3. **Usage**:
-   - Click the extension icon to open the popup.
-   - Use the input field to enter the keyword to track.
-   - Toggle the switch to turn the extension ON or OFF.
+3. **Load the Extension**
+   - Click "Load unpacked"
+   - Select the extension directory
+   - The extension icon should appear in your toolbar
 
-## File Structure
+4. **Add Alert Sound (Optional)**
+   - Add an `alert.mp3` file to the extension directory for custom alert sounds
+   - The extension will fallback to a generated beep sound if no file is provided
 
-```bash
-EXTENSION
- └── src/
-     ├── background.js          # Handles background operations like notifications
-     ├── content.js             # Searches for the keyword on the Chegg page and plays the sound
-     ├── icon.png               # Extension icon
-     ├── manifest.json          # Configuration file for the extension
-     ├── notification-sound.mp3 # Sound file for the notification
-     ├── popup.css              # Styles for the popup interface
-     ├── popup.html             # HTML for the popup interface
-     └── popup.js               # Script for handling popup logic
+## 🚀 Usage
+
+### Initial Setup
+1. **Open Chegg Expert Q&A Page**
+   - Navigate to any Chegg Expert page (https://expert.chegg.com/*)
+   - Keep this tab open while monitoring
+
+2. **Configure Extension**
+   - Click the extension icon in your toolbar
+   - Enter your target keyword (e.g., "Math", "Physics", "Exit")
+   - Set refresh interval in seconds (5 seconds recommended)
+
+3. **Start Monitoring**
+   - Toggle the monitoring switch to "ON"
+   - The extension will start auto-refreshing and scanning immediately
+
+### Monitoring Process
+1. **Automatic Refresh**: Page refreshes every X seconds (as configured)
+2. **Content Scanning**: After each refresh, scans for your keyword
+3. **Alert Triggers**: When keyword is found:
+   - 🔊 Plays alert sound
+   - 🔔 Shows Chrome notification
+   - ✨ Highlights keyword on page
+   - 📊 Updates statistics
+
+### Managing Monitoring
+- **Pause/Resume**: Use the toggle switch in popup
+- **Update Settings**: Change keyword or interval anytime - applies instantly
+- **Test Alerts**: Use "Test Alert" button to verify functionality
+- **Clear Stats**: Reset all statistics with "Clear Stats" button
+
+## ⚙️ Configuration Options
+
+### Keyword Settings
+- **Keyword**: Target word or phrase to monitor (case-insensitive)
+- **Character Limit**: 50 characters maximum
+- **Examples**: "Math", "Physics", "Exit", "Available"
+
+### Timing Settings
+- **Refresh Interval**: 1-300 seconds
+- **Recommended**: 5-10 seconds for active monitoring
+- **Performance**: Longer intervals reduce server load
+
+### Alert Preferences
+- **Sound Alerts**: Automatic (with fallback)
+- **Notifications**: Enabled by default
+- **Highlighting**: Always active when keywords found
+
+## 🔧 Technical Details
+
+### Architecture
+- **Manifest V3**: Latest Chrome extension standard
+- **Service Worker**: Background script for notifications and state management
+- **Content Script**: Page monitoring and manipulation
+- **Popup Interface**: Settings and statistics display
+
+### Permissions Required
+- `activeTab`: Access to current Chegg Expert tabs
+- `notifications`: Chrome system notifications
+- `storage`: Save user settings and statistics
+- `alarms`: Background timing operations
+
+### Browser Compatibility
+- **Chrome**: Version 88+ (Manifest V3 support)
+- **Edge**: Chromium-based versions
+- **Other Browsers**: Not currently supported
+
+### Performance Considerations
+- **Memory Usage**: Minimal background footprint
+- **CPU Impact**: Low - only active during scans
+- **Network**: Uses standard page refresh (no additional requests)
+
+## 🛠️ Development
+
+### Project Structure
+```
+├── manifest.json          # Extension configuration
+├── popup.html             # Popup interface
+├── popup.css              # Popup styling
+├── popup.js               # Popup functionality
+├── background.js          # Service worker
+├── content.js             # Page monitoring script
+├── alert.mp3              # Alert sound (optional)
+├── icons/                 # Extension icons
+│   ├── icon16.png
+│   ├── icon32.png
+│   ├── icon48.png
+│   └── icon128.png
+└── README.md              # Documentation
 ```
 
-## How It Works
+### Key Classes
+- **CheggMonitorPopup**: Handles UI interactions and settings
+- **CheggMonitorBackground**: Manages notifications and extension state
+- **CheggMonitorContent**: Performs page monitoring and keyword detection
 
-1. **Keyword Tracking**: 
-   - Enter the keyword you want to monitor in the popup. The extension will scan the page for the keyword and change its color to red when found.
+### Adding Custom Sounds
+1. Add MP3 file as `alert.mp3` in root directory
+2. Update `web_accessible_resources` in manifest.json if needed
+3. Extension automatically uses custom sound when available
 
-2. **Notifications**:
-   - The extension plays a sound (`notification-sound.mp3`) and displays a Chrome notification alert when the keyword is detected on the page.
+## 🚨 Troubleshooting
 
-3. **Toggle**:
-   - Use the ON/OFF switch in the popup to enable or disable the extension without uninstalling it.
+### Common Issues
 
-## Development
+**Extension Not Working**
+- Ensure you're on a Chegg Expert page (expert.chegg.com)
+- Check that monitoring is toggled ON
+- Verify keyword is entered correctly
 
-To contribute or modify the extension:
+**No Sound Alerts**
+- Check browser sound settings
+- Add custom `alert.mp3` file to extension directory
+- Browser may require user interaction before playing audio
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/chegg-question-alert-extension.git
-   ```
+**Notifications Not Showing**
+- Check Chrome notification permissions
+- Ensure notifications are enabled in system settings
+- Try restarting the browser
 
-2. Make your changes to the code inside the `src` directory.
+**Page Not Refreshing**
+- Verify refresh interval is set (1-300 seconds)
+- Check browser console for errors
+- Ensure page isn't prevented from refreshing by other extensions
 
-3. Test the changes by reloading the unpacked extension in `chrome://extensions/`.
+### Debug Mode
+1. Open Chrome DevTools on Chegg page
+2. Check Console tab for extension messages
+3. Look for `[Chegg Monitor]` prefixed logs
 
-## License
+## 📋 Limitations
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- **Domain Restriction**: Only works on expert.chegg.com pages
+- **Single Keyword**: Monitors one keyword at a time
+- **Browser Dependency**: Requires Chromium-based browser
+- **Active Tab**: Page must remain open for monitoring to work
 
-## Acknowledgments
+## 🔒 Privacy & Security
 
-- Chrome's [Extension API documentation](https://developer.chrome.com/docs/extensions/mv3/getstarted/) for guidance.
-- [Chegg](https://www.chegg.com/) for providing the platform where the extension is utilized.
+- **Data Storage**: All settings stored locally in browser
+- **No External Requests**: Extension doesn't make external API calls
+- **Minimal Permissions**: Only requests necessary permissions
+- **No Data Collection**: Extension doesn't collect or transmit user data
 
+## 🆕 Version History
 
+### v1.0.0
+- Initial release
+- Core monitoring functionality
+- Modern popup interface
+- Sound and notification alerts
+- Statistics tracking
+- Real-time settings updates
 
+## 📄 License
 
+This project is available for educational and personal use. Please ensure compliance with Chegg's Terms of Service when using this extension.
 
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests.
+
+### Development Setup
+1. Clone the repository
+2. Load as unpacked extension in Chrome
+3. Make changes and test thoroughly
+4. Submit pull request with detailed description
+
+## 📞 Support
+
+For issues, questions, or feature requests:
+1. Check this README for common solutions
+2. Open an issue on GitHub
+3. Provide detailed information about your setup and the problem
+
+---
+
+**Note**: This extension is designed to work with Chegg Expert pages and should be used in accordance with Chegg's Terms of Service and any applicable usage policies.
